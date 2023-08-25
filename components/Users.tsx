@@ -18,28 +18,39 @@ async function getLoadMoreList(nextPage: number | undefined): Promise<Result> {
 }
 
 function Users() {
-  const { data, loading, loadMore, loadingMore } = useInfiniteScroll((d) =>
-    getLoadMoreList(d?.nextId)
+  const { data, loading, loadMore, loadingMore } = useInfiniteScroll(
+    (d: Result) => getLoadMoreList(d?.nextId)
   );
 
   return (
-    <div className="flex flex-col items-center">
-      {loading ? (
-        <p className="my-4">Loading...</p>
-      ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-4 p-5">
-          {data?.list?.map((item: UserDataItem) => (
-            <Card user={item} key={item.id} />
-          ))}
+    <div id="evalan">
+      <div className="wrapper">
+        <div className="evanlan-task-info">
+          {loading ? (
+            <p className="">Loading...</p>
+          ) : (
+            <>
+              <div className="evanlan-task-headers">
+                <p className="user-profile-item">ID</p>
+                <p className="user-profile-item">User</p>
+                <p className="user-profile-item">Email</p>
+              </div>
+              <div className="evanlan-task-users">
+                {data?.list?.map((item: UserDataItem) => (
+                  <Card user={item} key={item.id} />
+                ))}
+              </div>
+            </>
+          )}
+
+          <div>
+            {data?.nextId !== undefined && (
+              <Loadmore loadMore={loadMore} loadingMore={loadingMore} />
+            )}
+
+            {data?.nextId === undefined && <span>No more data</span>}
+          </div>
         </div>
-      )}
-
-      <div className="my-4">
-        {data?.nextId !== undefined && (
-          <Loadmore loadMore={loadMore} loadingMore={loadingMore} />
-        )}
-
-        {data?.nextId === undefined && <span>No more data</span>}
       </div>
     </div>
   );

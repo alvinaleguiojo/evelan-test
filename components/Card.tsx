@@ -4,16 +4,23 @@ import Image from "next/image";
 
 function Card({ user }: { user: UserDataItem }) {
   return (
-    <div className="max-w-sm rounded overflow-hidden shadow-lg flex flex-col justify-center items-center">
-      <Image src={user.avatar} height={100} width={100} alt="avatar" />
-      <div className="px-6 py-4 text-center">
-        <p className="text-gray-700 text-base">{user.id}</p>
-        <p className="text-gray-700 text-base">{user.email}</p>
-        <div className="font-bold text-xl mb-2">
+    <section className="user-profile">
+      <p className="user-profile-item">{user.id}</p>
+      <div className="user-profile-info">
+        <Image
+          priority
+          src={user.avatar}
+          height={100}
+          width={100}
+          alt="avatar"
+          className="rounded-full"
+        />
+        <h2>
           {user.first_name} {user.last_name}
-        </div>
+        </h2>
       </div>
-    </div>
+      <p className="user-profile-item">{user.email}</p>
+    </section>
   );
 }
 
