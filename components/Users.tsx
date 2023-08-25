@@ -18,8 +18,8 @@ async function getLoadMoreList(nextPage: number | undefined): Promise<Result> {
 }
 
 function Users() {
-  const { data, loading, loadMore, loadingMore } = useInfiniteScroll(
-    (d: Result) => getLoadMoreList(d?.nextId)
+  const { data, loading, loadMore, loadingMore } = useInfiniteScroll((d: any) =>
+    getLoadMoreList(d?.nextId)
   );
 
   return (
