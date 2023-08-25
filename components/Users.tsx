@@ -23,7 +23,7 @@ function Users() {
   );
 
   return (
-    <div id="evalan">
+    <div className="evalan">
       <div className="wrapper">
         <div className="evanlan-task-info">
           {loading ? (
@@ -40,16 +40,13 @@ function Users() {
                   <Card user={item} key={item.id} />
                 ))}
               </div>
+              <Loadmore
+                loadMore={loadMore}
+                loadingMore={loadingMore}
+                noMore={data?.nextId === undefined}
+              />
             </>
           )}
-
-          <div>
-            <Loadmore
-              loadMore={loadMore}
-              loadingMore={loadingMore}
-              noMore={data?.nextId === undefined}
-            />
-          </div>
         </div>
       </div>
     </div>
