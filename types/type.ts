@@ -22,4 +22,5 @@ export interface Result {
 export interface Button {
   loadMore: () => void;
   loadingMore: boolean;
+  noMore: boolean;
 }

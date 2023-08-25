@@ -44,11 +44,11 @@ function Users() {
           )}
 
           <div>
-            {data?.nextId !== undefined && (
-              <Loadmore loadMore={loadMore} loadingMore={loadingMore} />
-            )}
-
-            {data?.nextId === undefined && <span>No more data</span>}
+            <Loadmore
+              loadMore={loadMore}
+              loadingMore={loadingMore}
+              noMore={data?.nextId === undefined}
+            />
           </div>
         </div>
       </div>
